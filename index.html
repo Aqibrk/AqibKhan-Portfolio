@@ -1,164 +1,493 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>My Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Navbar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+}
+
+      /* Half color text styling */
+      .half-colored {
+          font-size: 2.5em;
+          font-weight: 600;
+      }
+
+      .half-colored .light {
+          color: rgb(255, 255, 255); /* White */
+      }
+
+      .half-colored .custom-color {
+          color: rgb(220, 20, 60); /* RGB color */
+      }
+
+      /* Underline effect */
+      .underline-effect {
+          position: relative;
+      }
+
+      .underline-effect::after {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background-color: rgb(220, 20, 60); /* RGB color underline */
+          transform: scaleX(0);
+          transform-origin: bottom right;
+          transition: transform 0.3s ease-out;
+      }
+
+      .underline-effect:hover::after {
+          transform: scaleX(1);
+          transform-origin: bottom left;
+      }
+
+      /* Navbar Styles */
+      .navbar {
+          background-color: rgba(45, 45, 45, 0.8); /* Dark transparent background */
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar-logo a {
+          text-transform: uppercase;
+          font-weight: bold;
+          font-size: 1.5rem;
+      }
+
+      .navbar-links li a {
+          font-weight: 500;
+          transition: color 0.3s ease;
+      }
+
+      .navbar-links li a:hover {
+          color: rgb(220, 20, 60); /* Custom hover color */
+      }
+
+      /* Hero Section */
+      .hero {
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-image: url('hero-bg.png');
+          background-size: cover;
+          background-position: center;
+          position: relative;
+      }
+
+      .hero .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .hero h1 {
+          font-size: 3rem;
+          font-weight: 600;
+          color: white;
+          margin-bottom: 20px;
+      }
+
+      .hero p {
+          font-size: 1.2rem;
+          color: white;
+          margin-bottom: 30px;
+      }
+
+      /* Mobile Menu Styles */
+      .navbar-links-mobile {
+          background-color: rgba(45, 45, 45, 0.9);
+          padding-top: 50px;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 20;
+          transform: translateX(100%);
+          transition: transform 0.5s ease-in-out;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .navbar-links-mobile.show {
+          transform: translateX(0);
+      }
+
+      .navbar-links-mobile li a {
+          font-size: 2rem;
+          font-weight: 600;
+          color: white;
+          margin: 15px 0;
+          text-transform: uppercase;
+          transition: color 0.3s ease;
+      }
+
+      .navbar-links-mobile li a:hover {
+          color: rgb(220, 20, 60); /* Custom hover color */
+      }
+
+      /* Responsive Media Queries */
+      @media (min-width: 768px) {
+          .navbar-toggle {
+              display: none;
+          }
+
+          .navbar-links-mobile {
+              display: none;
+          }
+      }
+
+      /* Button Styling */
+      .btn-primary {
+          background-color: rgb(220, 20, 60);
+          color: white;
+          padding: 12px 25px;
+          border-radius: 8px;
+          font-size: 1.2rem;
+          text-transform: uppercase;
+          transition: background-color 0.3s ease;
+      }
+
+      .btn-primary:hover {
+          background-color: rgb(255, 69, 58);
+      }
+/* Services Section */
+.services p {
+    text-align: justify; /* Justify text in services section */
+}
+/* Card Animation */
+@keyframes fade-in-up {
+    0% {
+        opacity: 0;
+        transform: translateY(30px); /* Start from below */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* End in normal position */
+    }
+}
+
+/* Card Styles */
+.card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fade-in-up 0.6s ease-out; /* Applying the fade-in-up animation */
+}
+
+/* Hover effect to enlarge card */
+.card:hover {
+    transform: translateY(-10px); /* Slightly move up when hovered */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Stronger shadow on hover */
+}
+
+/* Media Query for mobile responsiveness */
+@media (min-width: 768px) {
+    .card {
+        animation: fade-in-up 0.6s ease-out; /* Animation for larger screens */
+    }
+}
+
+    /* Loader Styles */
+    .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loader .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid rgb(220, 20, 60); /* Custom spinner color */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hide the loader once the page is loaded */
+        .loader.hidden {
+            display: none;
+        }
+        .navbar-links-mobile {
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+}
+
+.navbar-links-mobile.show {
+    transform: translateX(0);
+}
+
+    </style>
 </head>
+<body class="bg-gray-100">
 
-<body>
-  <!-- Header -->
-  <section id="header">
-    <div class="header container">
-      <div class="nav-bar">
-        <div class="brand">
-          <a href="#hero">
-            <h1 class="M"><span>Aq </span>ib <span>  K h </span>a n</h1>
-          </a>                     
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="spinner"></div>
+    </div>
+    <!-- Navbar Section -->
+    <nav class="navbar fixed top-0 left-0 w-full flex justify-between items-center p-5 text-white z-10">
+        <!-- Logo -->
+        <div class="navbar-logo">
+            <a href="index.html" class="half-colored">
+                <span class="light">Aqib</span> <span class="custom-color">Khan</span>
+            </a>
         </div>
-        <div class="nav-list">
-          <div class="hamburger">
-            <div class="bar"></div>
+
+        <!-- Links -->
+        <ul class="navbar-links hidden md:flex space-x-8">
+            <li><a href="#index" class="underline-effect"><span>Home</span></a></li>
+            <li><a href="#about" class="underline-effect"><span>About</span></a></li>
+            <li><a href="D:\center\pro\project1.html" class="underline-effect"><span>Projects</span></a></li>
+            <li><a href="#services" class="underline-effect"><span>Services</span></a></li>
+            <li><a href="#footer" class="underline-effect"><span>Contact</span></a></li>
+        </ul>
+
+        <!-- Hamburger Icon (Mobile) -->
+        <div class="navbar-toggle flex md:hidden flex-col cursor-pointer space-y-2" id="navbar-toggle">
+            <span class="block w-6 h-1 bg-white rounded-md"></span>
+            <span class="block w-6 h-1 bg-white rounded-md"></span>
+            <span class="block w-6 h-1 bg-white rounded-md"></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero flex items-center justify-center text-white relative" id="index">
+      <div class="overlay"></div>
+      <div class="text-center relative z-10">
+          <h1 class="half-colored">
+              <span class="light">Hello, My Name is</span> <span class="custom-color">Aqib Khan</span>
+          </h1>
+          <p class="text-xl mb-6">Welcome to my portfolio website</p>
+          <a href="#projects" class="btn-primary">Explore My Work</a>
+      </div>
+    </section>
+
+
+<!-- About Section -->
+<section id="about" class="p-20 bg-white">
+  <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+
+      </div>
+
+      <!-- Skills Section -->
+      <div class="grid md:grid-cols-2 gap-10 mb-12">
+          <!-- Image Section -->
+          <div class="text-center">
+              <div class="inline-block" style="border-top: 8px solid rgb(220, 20, 60); border-left: 8px solid rgb(220, 20, 60); padding: 5px; margin: 10px;">
+                  <img src="pic.jpg" alt="Aqib Khan" class="w-48 h-48 object-cover">
+              </div>
           </div>
-          <ul>
-            <li><a href="#hero" data-after="Home">Home</a></li>
-            <li><a href="#services" data-after="Service">Services</a></li>
-             <li><a href="#about" data-after="About">About</a></li>
-            <li><a href="#contact" data-after="Contact">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End Header -->
 
-
-  <!-- Hero Section  -->
-  <section id="hero">
-    <div class="hero container">
-      <div>
-        <h1>Hello, <span></span></h1>
-        <h1>My Name is <span></span></h1>
-        <h1>Aqib Khan</h1>
-        <a href="cv.html" type="button" class="cta" style="font-weight: bold; font-size: x-large;">Hire me</a>
-      </div>
-    </div>
-  </section>
-  <!-- End Hero Section  -->
-
-  <!-- Service Section -->
-  <section id="services">
-    <div class="services container">
-      <div class="service-top">
-        <h1 class="section-title" style="font-weight: 800;"><span >S</span>erv<span>i</span>ces</h1>
-        <p align="justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum deleniti maiores pariatur assumenda quas
-          magni et, doloribus quod voluptate quasi molestiae magnam officiis dolorum, dolor provident atque molestias
-          voluptatum explicabo!</p>
-      </div>
-      <div class="service-bottom">
-        <div class="service-item">
-          <div class="icon"><img src="de.png" /></div>
-          <h2>progaramer</h2>
-          
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis debitis rerum, magni voluptatem sed
-            architecto placeat beatae tenetur officia quod</p>
-        </div>
-        <div class="service-item">
-          <div class="icon"><img src="app.png" /></div>
-          <h2>applicatin design</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis debitis rerum, magni voluptatem sed
-            architecto placeat beatae tenetur officia quod</p>
-        </div>
-        
-        <div class="service-item">
-          <div class="icon"><img src="develop.jpg" /></div>
-          
-          <h2>Web Design</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis debitis rerum, magni voluptatem sed
-            architecto placeat beatae tenetur officia quod</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End Service Section -->
-
- 
-  <!-- About Section -->
-  <section id="about">
-    <div class="about container">
-      <div class="col-left">
-        <div class="about-img">
-          <img src="pic.jpg" alt="img">
-        </div>
-      </div>
-      <div class="col-right">
-        <h1 class="section-title" style="font-weight: 900;">About <span style="font-weight: 900;">me</span></h1>
-        <h1  style="font-size: x-large; font-weight: 800;">Front End Developer</h1>
-        <p style="font-size: large; font-weight: 800;">This is me Aqib khan i am professional Web designer and web developer i have more then 3 year experience in web development and designing see my portfolio visit my portfolio if you have any query and project for web designing or development so you can place order on my site!</p>
-        <a href="cv.html" class="cta" style="font-weight: 900; border-radius: 5px; font-size: large; ">Download Resume</a>
-      </div>
-    </div>
-  </section>
-  <!-- End About Section -->
-
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="contact container">
-      <div>
-        <h1 class="section-title">Contact <span>info</span></h1>
-      </div>
-      <div class="contact-items">
-        <div class="contact-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/phone.png" /></div>
-          <div class="contact-info" >
-            <h1>Phone</h1>
-            <h2>03161307589</h2>
-            <h2>03402506747</h2>
+          <!-- Bio Section -->
+          <div class="text-center md:text-left">
+            <h2 class="text-4xl font-semibold mb-4">About Me</h2>
+              <p class="text-lg text-gray-700 text-justify">
+                  Hello! I'm Aqib Khan, an Information Technology professional passionate about programming and problem-solving. My journey in the tech world has been a series of exciting experiences that have shaped me into a skilled PHP developer, with expertise in front-end and back-end technologies.
+              </p>
+              <div class="text-center mt-6">
+                <a href="#contact" class="btn-primary">Download Resume</a>
+              </div>
           </div>
-        </div>
-        <div class="contact-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/new-post.png" /></div>
-          <div class="contact-info">
-            <h1>Email</h1>
-            <h2>aqibkhanrk676@gmail.com</h2>
-         </div>
-        </div>
-        <div class="contact-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/map-marker.png" /></div>
-          <div class="contact-info">
-            <h1>Address</h1>
-            <h2>sakhi per road near fareedpilaza tahirabad (pakistan - hyderabad)</h2>
-          </div>
-        </div>
       </div>
-    </div>
-  </section>
-  <!-- End Contact Section -->
+  </div>
+</section>
 
-  <!-- Footer -->
-  <section id="footer">
-    <div class="footer container">
-      <div class="brand">
-        <h1><span>Aq</span>ib <span>Kh</span>an</h1>
+
+
+<!-- Add Font Awesome CDN for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+    <section id="services" class="services py-20 bg-gray-100">
+      <div class="container mx-auto px-4 text-center">
+          <!-- Section Title -->
+          <h2 class="text-4xl font-semibold mb-8">Services</h2>
+  
+          <!-- Description -->
+          <p class="text-lg text-gray-700 mb-12">
+              I am Aqib Khan, a passionate Information Technology professional striving to evolve into a highly skilled PHP programmer, committed to delivering flawless solutions to diverse challenges. I possess expertise in comprehending project specifications, devising efficient coding strategies, executing tests, generating comprehensive reports, and continuously enhancing my programming proficiency.
+          </p>
+  
+          <!-- Cards Row -->
+          <div class="grid md:grid-cols-3 gap-8">
+              <!-- Card 1: PHP Development -->
+              <div class="card bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all">
+                  <div class="icon text-center mb-4">
+                      <!-- PHP Developer Icon -->
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-16 h-16 mx-auto text-custom-color">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12v9m0 0H3m9 0h9M12 3V1"></path>
+                      </svg>
+                  </div>
+                  <h3 class="text-xl font-semibold mb-3">PHP Programming</h3>
+                  <p class="text-gray-600">I specialize in PHP development, focusing on delivering efficient and scalable back-end solutions. My expertise includes working with frameworks like Laravel and creating custom applications that solve real-world problems.</p>
+              </div>
+  
+              <!-- Card 2: Application Design -->
+              <div class="card bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all">
+                  <div class="icon text-center mb-4">
+                      <!-- Application Design Icon -->
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-16 h-16 mx-auto text-custom-color">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v12a4 4 0 004 4h6a4 4 0 004-4V3H5z"></path>
+                      </svg>
+                  </div>
+                  <h3 class="text-xl font-semibold mb-3">Application Design</h3>
+                  <p class="text-gray-600">I design user-friendly and responsive web applications, ensuring a seamless user experience. I focus on clean, modular code and design aesthetics that align with user needs.</p>
+              </div>
+  
+              <!-- Card 3: Web Design -->
+              <div class="card bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all">
+                  <div class="icon text-center mb-4">
+                      <!-- Web Design Icon -->
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-16 h-16 mx-auto text-custom-color">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 3H8a2 2 0 00-2 2v14a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2zM8 3v14h8V3H8z"></path>
+                      </svg>
+                  </div>
+                  <h3 class="text-xl font-semibold mb-3">Web Design</h3>
+                  <p class="text-gray-600">As a front-end developer, I create visually appealing, responsive websites using HTML, CSS, and JavaScript. I focus on optimizing performance, accessibility, and user engagement to enhance the overall web experience.</p>
+              </div>
+          </div>
       </div>
-      <h2 id="hhh">Your Complete Web Solution</h2>
-      <div class="social-icon">
-        <div class="social-item">
-          <a href="https://www.facebook.com/profile.php?id=100062213612863"><img src="facebook.png" /></a> 
-        </div>
-        <div class="social-item">
-          <a href="instagram.com/sharartiaqibkhan12345"><img src="instra.gif" /></a>
-        </div>
-        <div class="social-item">
-          <a href="https://www.facebook.com/profile.php?id=100062213612863"><img src="ttt.gif" /></a>
-        </div>
-    
-    
   </section>
-  <!-- End Footer -->
-  <script src="./app.js"></script>
+  
+
+
+
+
+
+
+
+
+
+<!-- Add Font Awesome CDN for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<!-- Footer Section -->
+<footer class="bg-gray-800 text-white py-6">
+    <section class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center" id="footer">
+        <!-- Column 1: Personal Info -->
+        <div>
+            <p class="text-lg font-semibold mb-2">Aqib Khan</p>
+            <p class="text-md mb-2">Information Technology Enthusiast | PHP Developer</p>
+            <p class="mb-4">Striving to evolve into a highly skilled PHP programmer, committed to delivering flawless solutions to diverse challenges.</p>
+        </div>
+
+        <!-- Column 2: Skills & Languages -->
+        <div>
+            <h3 class="text-xl font-semibold mb-2">Skills</h3>
+            <p class="text-sm mb-2">HTML, CSS, PHP, MySQL, JavaScript, JQuery, WordPress, Bootstrap</p>
+            <h3 class="text-xl font-semibold mb-2">Languages</h3>
+            <p class="text-sm">English (Limited Working Proficiency), Urdu (Full Professional Proficiency)</p>
+        </div>
+
+        <!-- Column 3: Social Media Links -->
+        <div>
+            <h3 class="text-xl font-semibold mb-2">Follow Me</h3>
+            <div class="flex justify-center space-x-6">
+                <a href="https://www.linkedin.com/in/aqib-khan-a54159282" target="_blank" class="text-white hover:text-red-500">
+                    LinkedIn
+                </a>
+                <a href="https://github.com/Aqibrk" target="_blank" class="text-white hover:text-red-500">
+                    GitHub
+                </a>
+                <a href="mailto:aqibkhanrk676@gmail.com" class="text-white hover:text-red-500">
+                    Email
+                </a>
+            </div>
+        </div>
+
+        <!-- Column 4: Contact Information -->
+        <div>
+            <h3 class="text-xl font-semibold mb-2">Contact</h3>
+            <p class="text-sm mb-2">Email: <a href="mailto:aqibkhanrk676@gmail.com" class="text-pink-500">aqibkhanrk676@gmail.com</a></p>
+            <p class="text-sm mb-2">Phone: <a href="tel:+923161307589" class="text-pink-500">03161307589</a></p>
+            <p class="text-sm">Location: Hyderabad, Pakistan</p>
+        </div>
+    </section>
+
+    <!-- Copyright Section -->
+    <div class="text-center mt-6">
+        <p class="text-sm">© 2024 Aqib Khan. All Rights Reserved.</p>
+    </div>
+</footer>
+
+
+
+
+
+
+    <!-- Full-Screen Dropdown (Mobile) -->
+    <div class="navbar-links-mobile" id="navbar-links-mobile">
+        <div class="absolute top-5 right-5 text-white text-3xl cursor-pointer" id="close-btn">
+            &times;
+        </div>
+        <ul class="space-y-8">
+            <li><a href="index.html" class="underline-effect text-2xl">Home</a></li>
+            <li><a href="#about" class="underline-effect text-2xl">About</a></li>
+            <li><a href="" class="underline-effect text-2xl">Projects</a></li>
+            <li><a href="#services" class="underline-effect text-2xl">Services</a></li>
+            <li><a href="#footer" class="underline-effect text-2xl">Contact</a></li>
+        </ul>
+    </div>
+
+
+    <script>
+       // Select the mobile menu toggle and links
+    const toggleButton = document.getElementById('navbar-toggle');
+    const mobileMenu = document.querySelector('.navbar-links-mobile');
+    const mobileLinks = document.querySelectorAll('.navbar-links-mobile li a');
+
+    // Open/Close menu on toggle button click
+    toggleButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('show');
+    });
+
+    // Close menu when a link is clicked
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('show');
+        });
+    });
+        // Hide the loader after the page loads
+        window.onload = () => {
+            const loader = document.getElementById('loader');
+            loader.classList.add('hidden');
+        }
+    </script>
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </body>
-
 </html>

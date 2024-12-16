@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Navbar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+  /* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+}
+
+        /* Half color text styling */
+        .half-colored {
+            font-size: 2.5em;
+            font-weight: 600;
+        }
+
+        .half-colored .light {
+            color: rgb(255, 255, 255); /* White */
+        }
+
+        .half-colored .custom-color {
+            color: rgb(220, 20, 60); /* RGB color */
+        }
+
+        /* Underline effect */
+        .underline-effect {
+            position: relative;
+        }
+
+        .underline-effect::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgb(220, 20, 60); /* RGB color underline */
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+
+        .underline-effect:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: rgba(45, 45, 45, 0.8); /* Dark transparent background */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-logo a {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .navbar-links li a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links li a:hover {
+            color: rgb(220, 20, 60); /* Custom hover color */
+        }
+
+        /* Mobile Menu Styles */
+        .navbar-links-mobile {
+            background-color: rgba(45, 45, 45, 0.9);
+            padding-top: 50px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+            transform: translateX(100%);
+            transition: transform 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .navbar-links-mobile.show {
+            transform: translateX(0);
+        }
+
+        .navbar-links-mobile li a {
+            font-size: 2rem;
+            font-weight: 600;
+            color: white;
+            margin: 15px 0;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links-mobile li a:hover {
+            color: rgb(220, 20, 60); /* Custom hover color */
+        }
+
+        /* Responsive Media Queries */
+        @media (min-width: 768px) {
+            .navbar-toggle {
+                display: none;
+            }
+
+            .navbar-links-mobile {
+                display: none;
+            }
+        }
+
+        /* Button Styling */
+        .btn-primary {
+            background-color: rgb(220, 20, 60);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: rgb(255, 69, 58);
+        }
+
+        /* Loader Styles */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loader .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid rgb(220, 20, 60); /* Custom spinner color */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hide the loader once the page is loaded */
+        .loader.hidden {
+            display: none;
+        }
+
+        /* Gallery Styles */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        /* Default styling for larger screens */
+#project-gallery {
+    padding: 2rem;
+}
+
+.section-title {
+    font-size: 2.5rem; /* 40px */
+    margin: 5rem 0;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Media query for tablets (max-width: 1024px) */
+@media (max-width: 1024px) {
+    .gallery-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem; /* 32px */
+        margin: 3rem 0;
+    }
+}
+
+/* Media query for mobile devices (max-width: 768px) */
+@media (max-width: 768px) {
+    .gallery-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem; /* 28px */
+        margin: 2rem 0;
+    }
+
+    .overlay {
+        font-size: 0.9rem; /* Smaller font size for mobile */
+    }
+}
+
+/* Media query for extra-small mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.5rem; /* 24px */
+        margin: 1.5rem 0;
+    }
+
+    .overlay {
+        font-size: 0.8rem; /* Smaller font size for mobile */
+        padding: 0.8rem;
+    }
+}
+.navbar-links-mobile {
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+}
+
+.navbar-links-mobile.show {
+    transform: translateX(0);
+}
+
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navbar Section -->
+    <nav class="navbar fixed top-0 left-0 w-full flex justify-between items-center p-5 text-white z-10">
+        <!-- Logo -->
+        <div class="navbar-logo">
+            <a href="index.html" class="half-colored">
+                <span class="light">Aqib</span> <span class="custom-color">Khan</span>
+            </a>
+        </div>
+
+        <!-- Links -->
+        <ul class="navbar-links hidden md:flex space-x-8">
+            <li><a href="index.html" class="underline-effect"><span>Home</span></a></li>
+            <li><a href="#about" class="underline-effect"><span>About</span></a></li>
+            <li><a href="#projects" class="underline-effect"><span>Projects</span></a></li>
+              <li><a href="#footer" class="underline-effect"><span>Contact</span></a></li>
+        </ul>
+
+        <!-- Hamburger Icon (Mobile) -->
+        <div class="navbar-toggle flex md:hidden flex-col cursor-pointer space-y-2" id="navbar-toggle">
+            <span class="block w-6 h-1 bg-white rounded-md"></span>
+            <span class="block w-6 h-1 bg-white rounded-md"></span>
+            <span class="block w-6 h-1 bg-white rounded-md"></span>
+        </div>
+    </nav>
+
+<!-- Projects Section -->
+<section id="projects" class="section bg-gray-100 m-5">
+    <h2 class="section-title text-4xl text-center font-semibold m-20">My Projects</h2>
+
+    <!-- Container for Project Cards -->
+    <div class="project-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+        <!-- Card 1: E-Store -->
+        <div class="card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-500 ease-in-out transform hover:scale-105 hover:translate-y-[-10px]">
+            <h3 class="card-title text-2xl font-semibold mb-4">E-Store</h3>
+            <p class="card-description mb-4">
+                A fully functional e-commerce platform where users can browse, search, and purchase products. 
+                Features include user authentication, order management, and product categories.
+            </p>
+            <a href="https://aqib.quranteach.net/" target="_blank" class="card-btn text-white bg-gradient-to-r from-pink-500 to-red-600 py-2 px-6 rounded-lg text-lg hover:bg-gradient-to-l">View Project</a>
+        </div>
+
+        <!-- Card 2: School Management System -->
+        <div class="card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-500 ease-in-out transform hover:scale-105 hover:translate-y-[-10px]">
+            <h3 class="card-title text-2xl font-semibold mb-4">School Management System</h3>
+            <p class="card-description mb-4">
+                A comprehensive school management system with modules for exam management, student and teacher profiles, 
+                library management, and more. Ideal for automating various school processes.
+            </p>
+            <a href="https://learnquraninhome.freewebhostmost.com/" target="_blank" class="card-btn text-white bg-gradient-to-r from-pink-500 to-red-600 py-2 px-6 rounded-lg text-lg hover:bg-gradient-to-l">View Project</a>
+        </div>
+
+        <!-- Card 3: QuranTeach -->
+        <div class="card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-500 ease-in-out transform hover:scale-105 hover:translate-y-[-10px]">
+            <h3 class="card-title text-2xl font-semibold mb-4">QuranTeach</h3>
+            <p class="card-description mb-4">
+                A web-based platform designed for teaching the Quran. It includes lesson plans, quizzes, and progress tracking.
+            </p>
+            <a href="http://quranteach.net" target="_blank" class="card-btn text-white bg-gradient-to-r from-pink-500 to-red-600 py-2 px-6 rounded-lg text-lg hover:bg-gradient-to-l">View Project</a>
+        </div>
+
+        <!-- Card 4: File Manager -->
+        <div class="card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-500 ease-in-out transform hover:scale-105 hover:translate-y-[-10px]">
+            <h3 class="card-title text-2xl font-semibold mb-4">File Manager</h3>
+            <p class="card-description mb-4">
+                A file management system allowing users to upload, organize, and download various types of files (images, videos, documents).
+            </p>
+            <a href="https://quranteach.net/api/dashbord.php" target="_blank" class="card-btn text-white bg-gradient-to-r from-pink-500 to-red-600 py-2 px-6 rounded-lg text-lg hover:bg-gradient-to-l">View Project</a>
+        </div>
+
+        <!-- Card 5: Quiz Web App -->
+        <div class="card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-500 ease-in-out transform hover:scale-105 hover:translate-y-[-10px]">
+            <h3 class="card-title text-2xl font-semibold mb-4">Quiz Web App</h3>
+            <p class="card-description mb-4">
+                An interactive quiz platform that allows users to participate in timed quizzes, track their progress, and view results.
+            </p>
+            <a href="" target="_blank" class="card-btn text-white bg-gradient-to-r from-pink-500 to-red-600 py-2 px-6 rounded-lg text-lg hover:bg-gradient-to-l">View Project</a>
+        </div>
+
+        <!-- Card 6: PHP Dashboard -->
+        <div class="card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-500 ease-in-out transform hover:scale-105 hover:translate-y-[-10px]">
+            <h3 class="card-title text-2xl font-semibold mb-4">PHP Dashboard</h3>
+            <p class="card-description mb-4">
+                A dynamic dashboard built with PHP, allowing users to manage content, view statistics, and perform administrative tasks.
+            </p>
+            <a href="https://aqib.quranteach.net/admin/admin_login.php" target="_blank" class="card-btn text-white bg-gradient-to-r from-pink-500 to-red-600 py-2 px-6 rounded-lg text-lg hover:bg-gradient-to-l">View Project</a>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- Gallery Section -->
+<section id="project-gallery" class="section bg-gray-100 m-5">
+          <h2 class="text-4xl text-center font-semibold mb-8">Project Gallery</h2>
+
+    <div class="gallery-container">
+        <!-- Gallery Item 1 -->
+        <div class="gallery-item">
+            <a href="https://aqib.quranteach.net/" target="_blank">
+                <img src="estore.png" alt="E-Store Project">
+                <div class="overlay">
+                    <p class="text-center">View the E-Store Project</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Gallery Item 2 -->
+        <div class="gallery-item">
+            <a href="https://learnquraninhome.freewebhostmost.com/" target="_blank">
+                <img src="lms.png" alt="School Management System">
+                <div class="overlay">
+                    <p class="text-center">View the School Management System</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Gallery Item 3 -->
+        <div class="gallery-item">
+            <a href="https://quranteach.net/" target="_blank">
+                <img src="madarsa.png" alt="QuranTeach">
+                <div class="overlay">
+                    <p class="text-center">View the QuranTeach Project</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Gallery Item 4 -->
+        <div class="gallery-item">
+            <a href="https://quranteach.net/api/dashbord.php" target="_blank">
+                <img src="filer.png" alt="File Manager">
+                <div class="overlay">
+                    <p class="text-center">View the File Manager</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Gallery Item 5 -->
+        <div class="gallery-item">
+            <a href="" target="_blank">
+                <img src="quiz.png" alt="Quiz Web App">
+                <div class="overlay">
+                    <p class="text-center">View the Quiz Web App</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Gallery Item 6 -->
+        <div class="gallery-item">
+            <a href="https://aqib.quranteach.net/admin/admin_login.php" target="_blank">
+                <img src="dashbord.png" alt="PHP Dashboard">
+                <div class="overlay">
+                    <p class="text-center">View the PHP Dashboard</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Gallery Item 7 -->
+        <div class="gallery-item">
+            <a href="" target="_blank">
+                <img src="fg.png" alt="Social Media Login">
+                <div class="overlay">
+                    <p class="text-center">Login with Google & Facebook</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Gallery Item 8 -->
+        <div class="gallery-item">
+            <a href="https://aqib.quranteach.net/resetpwd.php" target="_blank">
+                <img src="forget.png" alt="Password Recovery">
+                <div class="overlay">
+                    <p class="text-center">View the Forget Password Feature</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Gallery Item 9 -->
+        <div class="gallery-item">
+            <a href="" target="_blank">
+                <img src="mailorder.png" alt="Order Confirmation Email">
+                <div class="overlay">
+                    <p class="text-center">View the Order Confirmation Email</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Gallery Item 10 -->
+        <div class="gallery-item">
+            <a href="" target="_blank">
+                <img src="dashbordtecher.png" alt="Teacher Dashboard">
+                <div class="overlay">
+                    <p class="text-center">View the Teacher Dashboard</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- Add Font Awesome CDN for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<!-- Footer Section -->
+<footer class="bg-gray-800 text-white py-6">
+    <section class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center" id="footer">
+        <!-- Column 1: Personal Info -->
+        <div>
+            <p class="text-lg font-semibold mb-2">Aqib Khan</p>
+            <p class="text-md mb-2">Information Technology Enthusiast | PHP Developer</p>
+            <p class="mb-4">Striving to evolve into a highly skilled PHP programmer, committed to delivering flawless solutions to diverse challenges.</p>
+        </div>
+
+        <!-- Column 2: Skills & Languages -->
+        <div>
+            <h3 class="text-xl font-semibold mb-2">Skills</h3>
+            <p class="text-sm mb-2">HTML, CSS, PHP, MySQL, JavaScript, JQuery, WordPress, Bootstrap</p>
+            <h3 class="text-xl font-semibold mb-2">Languages</h3>
+            <p class="text-sm">English (Limited Working Proficiency), Urdu (Full Professional Proficiency)</p>
+        </div>
+
+        <!-- Column 3: Social Media Links -->
+        <div>
+            <h3 class="text-xl font-semibold mb-2">Follow Me</h3>
+            <div class="flex justify-center space-x-6">
+                <a href="https://www.linkedin.com/in/aqib-khan-a54159282" target="_blank" class="text-white hover:text-red-500">
+                    LinkedIn
+                </a>
+                <a href="https://github.com/Aqibrk" target="_blank" class="text-white hover:text-red-500">
+                    GitHub
+                </a>
+                <a href="mailto:aqibkhanrk676@gmail.com" class="text-white hover:text-red-500">
+                    Email
+                </a>
+            </div>
+        </div>
+
+        <!-- Column 4: Contact Information -->
+        <div>
+            <h3 class="text-xl font-semibold mb-2">Contact</h3>
+            <p class="text-sm mb-2">Email: <a href="mailto:aqibkhanrk676@gmail.com" class="text-pink-500">aqibkhanrk676@gmail.com</a></p>
+            <p class="text-sm mb-2">Phone: <a href="tel:+923161307589" class="text-pink-500">03161307589</a></p>
+            <p class="text-sm">Location: Hyderabad, Pakistan</p>
+        </div>
+    </section>
+
+    <!-- Copyright Section -->
+    <div class="text-center mt-6">
+        <p class="text-sm">© 2024 Aqib Khan. All Rights Reserved.</p>
+    </div>
+</footer>
+
+
+
+
+
+
+    <!-- Full-Screen Dropdown (Mobile) -->
+    <div class="navbar-links-mobile" id="navbar-links-mobile">
+        <div class="absolute top-5 right-5 text-white text-3xl cursor-pointer" id="close-btn">
+            &times;
+        </div>
+        <ul class="space-y-8">
+            <li><a href="index.html" class="underline-effect text-2xl">Home</a></li>
+            <li><a href="#about" class="underline-effect text-2xl">About</a></li>
+            <li><a href="" class="underline-effect text-2xl">Projects</a></li>
+           <li><a href="#footer" class="underline-effect text-2xl">Contact</a></li>
+        </ul>
+    </div>
+
+    <script>
+      // Select the mobile menu toggle and links
+    const toggleButton = document.getElementById('navbar-toggle');
+    const mobileMenu = document.querySelector('.navbar-links-mobile');
+    const mobileLinks = document.querySelectorAll('.navbar-links-mobile li a');
+
+    // Open/Close menu on toggle button click
+    toggleButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('show');
+    });
+
+    // Close menu when a link is clicked
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('show');
+        });
+    });
+
+        // Hide the loader after the page loads
+        window.onload = () => {
+            const loader = document.getElementById('loader');
+            loader.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Navbar</title>
+    <title>Portfolio Aqib khan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="styles.css">
+     <!-- Favicon -->
+    <link rel="icon" type="image/png" href="g1.png"> <!-- Replace with your favicon path -->
     <style>
 /* Global Styles */
 body {
@@ -268,9 +270,9 @@ html {
 
         <!-- Links -->
         <ul class="navbar-links hidden md:flex space-x-8">
-            <li><a href="#index" class="underline-effect"><span>Home</span></a></li>
+            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/" class="underline-effect"><span>Home</span></a></li>
             <li><a href="#about" class="underline-effect"><span>About</span></a></li>
-            <li><a href="D:\center\pro\project1.html" class="underline-effect"><span>Projects</span></a></li>
+            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/project1.html" class="underline-effect"><span>Projects</span></a></li>
             <li><a href="#services" class="underline-effect"><span>Services</span></a></li>
             <li><a href="#footer" class="underline-effect"><span>Contact</span></a></li>
         </ul>
@@ -291,40 +293,47 @@ html {
               <span class="light">Hello, My Name is</span> <span class="custom-color">Aqib Khan</span>
           </h1>
           <p class="text-xl mb-6">Welcome to my portfolio website</p>
-          <a href="#projects" class="btn-primary">Explore My Work</a>
+          <a href="https://aqibrk.github.io/AqibKhan-Portfolio/project1.html" class="btn-primary">Explore My Work</a>
       </div>
     </section>
 
 
 <!-- About Section -->
-<section id="about" class="p-20 bg-white">
-  <div class="container mx-auto px-4">
+<section id="about" class="p-10 bg-white">
+    <div class="container mx-auto px-4">
+      <!-- Section Heading -->
       <div class="text-center mb-12">
-
+        <h2 class="text-4xl font-bold text-gray-800">About Me</h2>
       </div>
-
-      <!-- Skills Section -->
-      <div class="grid md:grid-cols-2 gap-10 mb-12">
-          <!-- Image Section -->
-          <div class="text-center">
-              <div class="inline-block" style="border-top: 8px solid rgb(220, 20, 60); border-left: 8px solid rgb(220, 20, 60); padding: 5px; margin: 10px;">
-                  <img src="pic.jpg" alt="Aqib Khan" class="w-48 h-48 object-cover">
-              </div>
+  
+      <!-- Grid Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <!-- Image Section -->
+        <div class="flex justify-center md:justify-end">
+          <div 
+            class="inline-block border-t-8 border-l-8 border-crimson p-2 md:p-4"
+            style="border-color: rgb(220, 20, 60);"
+          >
+            <img src="pic.jpg" alt="Aqib Khan" class="w-48 h-48 md:w-60 md:h-60 rounded-lg object-cover shadow-lg">
           </div>
-
-          <!-- Bio Section -->
-          <div class="text-center md:text-left">
-            <h2 class="text-4xl font-semibold mb-4">About Me</h2>
-              <p class="text-lg text-gray-700 text-justify">
-                  Hello! I'm Aqib Khan, an Information Technology professional passionate about programming and problem-solving. My journey in the tech world has been a series of exciting experiences that have shaped me into a skilled PHP developer, with expertise in front-end and back-end technologies.
-              </p>
-              <div class="text-center mt-6">
-                <a href="cv.html" class="btn-primary">Download Resume</a>
-              </div>
+        </div>
+  
+        <!-- Bio Section -->
+        <div class="text-center md:text-left">
+          <h3 class="text-2xl md:text-4xl font-semibold mb-4 text-gray-800">About Me</h3>
+          <p class="text-base md:text-lg text-gray-700 leading-relaxed text-justify">
+            Hello! I'm Aqib Khan, an Information Technology professional passionate about programming and problem-solving. My journey in the tech world has been a series of exciting experiences that have shaped me into a skilled PHP developer, with expertise in front-end and back-end technologies.
+          </p>
+          <div class="mt-6">
+            <a href="cv.html" class="btn-primary" >
+              Download Resume
+            </a>
           </div>
+        </div>
       </div>
-  </div>
-</section>
+    </div>
+  </section>
+  
 
 
 
@@ -454,9 +463,9 @@ html {
             &times;
         </div>
         <ul class="space-y-8">
-            <li><a href="index.html" class="underline-effect text-2xl">Home</a></li>
-            <li><a href="#about" class="underline-effect text-2xl">About</a></li>
-            <li><a href="" class="underline-effect text-2xl">Projects</a></li>
+            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/" class="underline-effect text-2xl">Home</a></li>
+            <li><a href="#about" class="underline-effect"><span>About</span></a></li>
+            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/project1.html" class="underline-effect"><span>Projects</span></a></li>
             <li><a href="#services" class="underline-effect text-2xl">Services</a></li>
             <li><a href="#footer" class="underline-effect text-2xl">Contact</a></li>
         </ul>
@@ -464,27 +473,35 @@ html {
 
 
     <script>
-       // Select the mobile menu toggle and links
-    const toggleButton = document.getElementById('navbar-toggle');
-    const mobileMenu = document.querySelector('.navbar-links-mobile');
-    const mobileLinks = document.querySelectorAll('.navbar-links-mobile li a');
+   // Select the mobile menu toggle and links
+const toggleButton = document.getElementById('navbar-toggle');
+const mobileMenu = document.querySelector('.navbar-links-mobile');
+const mobileLinks = document.querySelectorAll('.navbar-links-mobile li a');
+const closeButton = document.getElementById('close-btn'); // Select the close button
 
-    // Open/Close menu on toggle button click
-    toggleButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('show');
-    });
+// Open/Close menu on toggle button click
+toggleButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('show');
+});
 
-    // Close menu when a link is clicked
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('show');
-        });
+// Close menu when a link is clicked
+mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('show');
     });
-        // Hide the loader after the page loads
-        window.onload = () => {
-            const loader = document.getElementById('loader');
-            loader.classList.add('hidden');
-        }
+});
+
+// Close menu when close button is clicked
+closeButton.addEventListener('click', () => {
+    mobileMenu.classList.remove('show');
+});
+
+// Hide the loader after the page loads
+window.onload = () => {
+    const loader = document.getElementById('loader');
+    loader.classList.add('hidden');
+};
+
     </script>
 <!-- Font Awesome CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">

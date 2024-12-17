@@ -6,7 +6,7 @@
     <title>Portfolio Navbar</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
- 
+    <link rel="stylesheet" href="styles.css">
     <style>
   /* Global Styles */
 body {
@@ -316,16 +316,17 @@ html {
     <nav class="navbar fixed top-0 left-0 w-full flex justify-between items-center p-5 text-white z-10">
         <!-- Logo -->
         <div class="navbar-logo">
-            <a href="index.html" class="half-colored">
+            <a href="https://aqibrk.github.io/AqibKhan-Portfolio/" class="half-colored">
                 <span class="light">Aqib</span> <span class="custom-color">Khan</span>
             </a>
         </div>
 
         <!-- Links -->
         <ul class="navbar-links hidden md:flex space-x-8">
-            <li><a href="index.html" class="underline-effect"><span>Home</span></a></li>
-            <li><a href="#about" class="underline-effect"><span>About</span></a></li>
-            <li><a href="#projects" class="underline-effect"><span>Projects</span></a></li>
+            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/" class="underline-effect"><span>Home</span></a></li>
+            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/index.html#about" class="underline-effect"><span>About</span></a></li>
+            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/project1.html" class="underline-effect"><span>Projects</span></a></li>
+            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/index.html#services" class="underline-effect text-2xl">Services</a></li>
               <li><a href="#footer" class="underline-effect"><span>Contact</span></a></li>
         </ul>
 
@@ -574,36 +575,45 @@ html {
             &times;
         </div>
         <ul class="space-y-8">
-            <li><a href="index.html" class="underline-effect text-2xl">Home</a></li>
-            <li><a href="#about" class="underline-effect text-2xl">About</a></li>
-            <li><a href="" class="underline-effect text-2xl">Projects</a></li>
-           <li><a href="#footer" class="underline-effect text-2xl">Contact</a></li>
+            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/" class="underline-effect"><span>Home</span></a></li>
+            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/index.html#about" class="underline-effect"><span>About</span></a></li>
+            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/project1.html" class="underline-effect"><span>Projects</span></a></li>
+            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/index.html#services" class="underline-effect text-2xl">Services</a></li>
+              <li><a href="#footer" class="underline-effect"><span>Contact</span></a></li>
         </ul>
     </div>
 
     <script>
       // Select the mobile menu toggle and links
-    const toggleButton = document.getElementById('navbar-toggle');
-    const mobileMenu = document.querySelector('.navbar-links-mobile');
-    const mobileLinks = document.querySelectorAll('.navbar-links-mobile li a');
+// Select the mobile menu toggle and links
+const toggleButton = document.getElementById('navbar-toggle');
+const mobileMenu = document.querySelector('.navbar-links-mobile');
+const mobileLinks = document.querySelectorAll('.navbar-links-mobile li a');
+const closeButton = document.getElementById('close-btn'); // Select the close button
 
-    // Open/Close menu on toggle button click
-    toggleButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('show');
+// Open/Close menu on toggle button click
+toggleButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('show');
+});
+
+// Close menu when a link is clicked
+mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('show');
     });
+});
 
-    // Close menu when a link is clicked
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('show');
-        });
-    });
+// Close menu when close button is clicked
+closeButton.addEventListener('click', () => {
+    mobileMenu.classList.remove('show');
+});
 
-        // Hide the loader after the page loads
-        window.onload = () => {
-            const loader = document.getElementById('loader');
-            loader.classList.add('hidden');
-        }
+// Hide the loader after the page loads
+window.onload = () => {
+    const loader = document.getElementById('loader');
+    loader.classList.add('hidden');
+};
+
     </script>
 </body>
 </html>

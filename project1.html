@@ -3,617 +3,545 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Navbar</title>
+    <title>Aqib Khan | Portfolio Projects</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="g1.png">
     <style>
-  /* Global Styles */
-body {
-    font-family: 'Poppins', sans-serif;
-}
-
-html {
-    scroll-behavior: smooth; /* Enable smooth scrolling */
-}
-
-        /* Half color text styling */
-        .half-colored {
-            font-size: 2.5em;
-            font-weight: 600;
+        :root {
+            --primary-color: rgb(220, 20, 60);
+            --secondary-color: rgb(30, 41, 59);
         }
-
-        .half-colored .light {
-            color: rgb(255, 255, 255); /* White */
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
         }
-
-        .half-colored .custom-color {
-            color: rgb(220, 20, 60); /* RGB color */
-        }
-
-        /* Underline effect */
-        .underline-effect {
-            position: relative;
-        }
-
-        .underline-effect::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: rgb(220, 20, 60); /* RGB color underline */
-            transform: scaleX(0);
-            transform-origin: bottom right;
-            transition: transform 0.3s ease-out;
-        }
-
-        .underline-effect:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-
+        
         /* Navbar Styles */
         .navbar {
-            background-color: rgba(45, 45, 45, 0.8); /* Dark transparent background */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            background-color: rgba(15, 23, 42, 0.9);
         }
-
-        .navbar-logo a {
-            text-transform: uppercase;
-            font-weight: bold;
-            font-size: 1.5rem;
+        
+        .navbar.scrolled {
+            background-color: rgba(15, 23, 42, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
-
-        .navbar-links li a {
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .navbar-links li a:hover {
-            color: rgb(220, 20, 60); /* Custom hover color */
-        }
-
-        /* Mobile Menu Styles */
-        .navbar-links-mobile {
-            background-color: rgba(45, 45, 45, 0.9);
-            padding-top: 50px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 20;
-            transform: translateX(100%);
-            transition: transform 0.5s ease-in-out;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .navbar-links-mobile.show {
-            transform: translateX(0);
-        }
-
-        .navbar-links-mobile li a {
-            font-size: 2rem;
-            font-weight: 600;
-            color: white;
-            margin: 15px 0;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-        }
-
-        .navbar-links-mobile li a:hover {
-            color: rgb(220, 20, 60); /* Custom hover color */
-        }
-
-        /* Responsive Media Queries */
-        @media (min-width: 768px) {
-            .navbar-toggle {
-                display: none;
-            }
-
-            .navbar-links-mobile {
-                display: none;
-            }
-        }
-
-        /* Button Styling */
+        
+        /* Button Styles */
         .btn-primary {
-            background-color: rgb(220, 20, 60);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            transition: background-color 0.3s ease;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
         }
-
+        
         .btn-primary:hover {
-            background-color: rgb(255, 69, 58);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(220, 20, 60, 0.3);
         }
-
-        /* Loader Styles */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
+        
+        /* Project Card Hover Effect */
+        .project-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
         }
-
-        .loader .spinner {
-            border: 8px solid #f3f3f3;
-            border-top: 8px solid rgb(220, 20, 60); /* Custom spinner color */
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
-
+        
+        /* Gallery Item Hover Effect */
+        .gallery-item {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            background: rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        /* Loader Animation */
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        /* Hide the loader once the page is loaded */
-        .loader.hidden {
-            display: none;
+        
+        .loader .spinner {
+            animation: spin 1s linear infinite;
+            border-top-color: var(--primary-color);
         }
-
-        /* Gallery Styles */
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .gallery-item {
+        
+        /* Section Title Underline */
+        .section-title {
             position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
         }
-
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-item .overlay {
+        
+        .section-title:after {
+            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            width: 50%;
+            height: 4px;
+            background: var(--primary-color);
+            bottom: -10px;
+            left: 25%;
         }
-
-        .gallery-item:hover .overlay {
-            opacity: 1;
-        }
-        /* Default styling for larger screens */
-#project-gallery {
-    padding: 2rem;
-}
-
-.section-title {
-    font-size: 2.5rem; /* 40px */
-    margin: 5rem 0;
-}
-
-.gallery-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    transition: transform 0.3s ease-in-out;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.05);
-}
-
-.overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    border-radius: 0 0 8px 8px;
-}
-
-/* Media query for tablets (max-width: 1024px) */
-@media (max-width: 1024px) {
-    .gallery-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-
-    .section-title {
-        font-size: 2rem; /* 32px */
-        margin: 3rem 0;
-    }
-}
-
-/* Media query for mobile devices (max-width: 768px) */
-@media (max-width: 768px) {
-    .gallery-container {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .section-title {
-        font-size: 1.8rem; /* 28px */
-        margin: 2rem 0;
-    }
-
-    .overlay {
-        font-size: 0.9rem; /* Smaller font size for mobile */
-    }
-}
-
-/* Media query for extra-small mobile devices (max-width: 480px) */
-@media (max-width: 480px) {
-    .section-title {
-        font-size: 1.5rem; /* 24px */
-        margin: 1.5rem 0;
-    }
-
-    .overlay {
-        font-size: 0.8rem; /* Smaller font size for mobile */
-        padding: 0.8rem;
-    }
-}
-.navbar-links-mobile {
-    transform: translateX(100%);
-    transition: transform 0.5s ease-in-out;
-}
-
-.navbar-links-mobile.show {
-    transform: translateX(0);
-}
-
     </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-50">
 
     <!-- Loader -->
-    <div class="loader" id="loader">
-        <div class="spinner"></div>
+    <div class="loader fixed inset-0 flex items-center justify-center bg-white z-50" id="loader">
+        <div class="spinner h-12 w-12 border-4 border-gray-200 rounded-full"></div>
     </div>
 
-    <!-- Navbar Section -->
-    <nav class="navbar fixed top-0 left-0 w-full flex justify-between items-center p-5 text-white z-10">
-        <!-- Logo -->
-        <div class="navbar-logo">
-            <a href="https://aqibrk.github.io/AqibKhan-Portfolio/" class="half-colored">
-                <span class="light">Aqib</span> <span class="custom-color">Khan</span>
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 left-0 w-full py-4 px-6 md:px-12 flex justify-between items-center z-40">
+        <div class="flex items-center">
+            <a href="index.html" class="text-2xl font-bold text-white">
+                <span class="text-white">Aqib</span>
+                <span class="text-red-600">Khan</span>
             </a>
         </div>
-
-        <!-- Links -->
-        <ul class="navbar-links hidden md:flex space-x-8">
-            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/" class="underline-effect"><span>Home</span></a></li>
-            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/index.html#about" class="underline-effect"><span>About</span></a></li>
-            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/project1.html" class="underline-effect"><span>Projects</span></a></li>
-            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/index.html#services" class="underline-effect">Services</a></li>
-              <li><a href="#footer" class="underline-effect"><span>Contact</span></a></li>
-        </ul>
-
-        <!-- Hamburger Icon (Mobile) -->
-        <div class="navbar-toggle flex md:hidden flex-col cursor-pointer space-y-2" id="navbar-toggle">
-            <span class="block w-6 h-1 bg-white rounded-md"></span>
-            <span class="block w-6 h-1 bg-white rounded-md"></span>
-            <span class="block w-6 h-1 bg-white rounded-md"></span>
+        
+        <div class="hidden md:flex space-x-8">
+            <a href="index.html" class="text-white hover:text-red-400 transition">Home</a>
+            <a href="index.html#about" class="text-white hover:text-red-400 transition">About</a>
+            <a href="project1.html" class="text-white hover:text-red-400 transition font-semibold">Projects</a>
+            <a href="index.html#services" class="text-white hover:text-red-400 transition">Services</a>
+            <a href="contact.html" class="text-white hover:text-red-400 transition">Contact</a>
+        </div>
+        
+        <div class="md:hidden">
+            <button id="mobile-menu-button" class="text-white focus:outline-none">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </div>
     </nav>
 
-<!-- Projects Section -->
-<section id="projects" class="section bg-gray-100 m-5">
-   <h2 class="text-3xl text-center font-semibold my-8 mt-20">My Projects</h2>
-
-    <!-- Container for Project Cards -->
-    <div class="project-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-        <!-- Card 1: E-Store -->
-        <div class="card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-500 ease-in-out transform hover:scale-105 hover:translate-y-[-10px]">
-            <h3 class="card-title text-2xl font-semibold mb-4">E-Store</h3>
-            <p class="card-description mb-4">
-                A fully functional e-commerce platform where users can browse, search, and purchase products. 
-                Features include user authentication, order management, and product categories.
-            </p>
-            <a href="https://aqib.quranteach.net/" target="_blank" class="card-btn text-white bg-gradient-to-r from-pink-500 to-red-600 py-2 px-6 rounded-lg text-lg hover:bg-gradient-to-l">View Project</a>
-        </div>
-
-        <!-- Card 2: School Management System -->
-        <div class="card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-500 ease-in-out transform hover:scale-105 hover:translate-y-[-10px]">
-            <h3 class="card-title text-2xl font-semibold mb-4">School Management System</h3>
-            <p class="card-description mb-4">
-                A comprehensive school management system with modules for exam management, student and teacher profiles, 
-                library management, and more. Ideal for automating various school processes.
-            </p>
-            <a href="https://learnquraninhome.freewebhostmost.com/" target="_blank" class="card-btn text-white bg-gradient-to-r from-pink-500 to-red-600 py-2 px-6 rounded-lg text-lg hover:bg-gradient-to-l">View Project</a>
-        </div>
-
-        <!-- Card 3: QuranTeach -->
-        <div class="card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-500 ease-in-out transform hover:scale-105 hover:translate-y-[-10px]">
-            <h3 class="card-title text-2xl font-semibold mb-4">QuranTeach</h3>
-            <p class="card-description mb-4">
-                A web-based platform designed for teaching the Quran. It includes lesson plans, quizzes, and progress tracking.
-            </p>
-            <a href="http://quranteach.net" target="_blank" class="card-btn text-white bg-gradient-to-r from-pink-500 to-red-600 py-2 px-6 rounded-lg text-lg hover:bg-gradient-to-l">View Project</a>
-        </div>
-
-        <!-- Card 4: File Manager -->
-        <div class="card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-500 ease-in-out transform hover:scale-105 hover:translate-y-[-10px]">
-            <h3 class="card-title text-2xl font-semibold mb-4">File Manager</h3>
-            <p class="card-description mb-4">
-                A file management system allowing users to upload, organize, and download various types of files (images, videos, documents).
-            </p>
-            <a href="https://quranteach.net/api/dashbord.php" target="_blank" class="card-btn text-white bg-gradient-to-r from-pink-500 to-red-600 py-2 px-6 rounded-lg text-lg hover:bg-gradient-to-l">View Project</a>
-        </div>
-
-        <!-- Card 5: Quiz Web App -->
-        <div class="card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-500 ease-in-out transform hover:scale-105 hover:translate-y-[-10px]">
-            <h3 class="card-title text-2xl font-semibold mb-4">Quiz Web App</h3>
-            <p class="card-description mb-4">
-                An interactive quiz platform that allows users to participate in timed quizzes, track their progress, and view results.
-            </p>
-            <a href="" target="_blank" class="card-btn text-white bg-gradient-to-r from-pink-500 to-red-600 py-2 px-6 rounded-lg text-lg hover:bg-gradient-to-l">View Project</a>
-        </div>
-
-        <!-- Card 6: PHP Dashboard -->
-        <div class="card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-500 ease-in-out transform hover:scale-105 hover:translate-y-[-10px]">
-            <h3 class="card-title text-2xl font-semibold mb-4">PHP Dashboard</h3>
-            <p class="card-description mb-4">
-                A dynamic dashboard built with PHP, allowing users to manage content, view statistics, and perform administrative tasks.
-            </p>
-            <a href="https://aqib.quranteach.net/admin/admin_login.php" target="_blank" class="card-btn text-white bg-gradient-to-r from-pink-500 to-red-600 py-2 px-6 rounded-lg text-lg hover:bg-gradient-to-l">View Project</a>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-gray-900 bg-opacity-90 z-50 hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <button id="close-mobile-menu" class="absolute top-6 right-6 text-white text-2xl">
+                &times;
+            </button>
+            <a href="index.html" class="text-white text-2xl hover:text-red-400 transition">Home</a>
+            <a href="index.html#about" class="text-white text-2xl hover:text-red-400 transition">About</a>
+            <a href="project1.html" class="text-white text-2xl hover:text-red-400 transition font-semibold">Projects</a>
+            <a href="index.html#services" class="text-white text-2xl hover:text-red-400 transition">Services</a>
+            <a href="contact.html" class="text-white text-2xl hover:text-red-400 transition">Contact</a>
         </div>
     </div>
-</section>
 
-
-
-
-<!-- Gallery Section -->
-<section id="project-gallery" class="section bg-gray-100 m-5">
-          <h2 class="text-3xl text-center font-semibold mb-8">Project Gallery</h2>
-
-    <div class="gallery-container">
-        <!-- Gallery Item 1 -->
-        <div class="gallery-item">
-            <a href="https://aqib.quranteach.net/" target="_blank">
-                <img src="estore.png" alt="E-Store Project">
-                <div class="overlay">
-                    <p class="text-center">View the E-Store Project</p>
-                </div>
-            </a>
-        </div>
-
-        <!-- Gallery Item 2 -->
-        <div class="gallery-item">
-            <a href="https://learnquraninhome.freewebhostmost.com/" target="_blank">
-                <img src="lms.png" alt="School Management System">
-                <div class="overlay">
-                    <p class="text-center">View the School Management System</p>
-                </div>
-            </a>
-        </div>
-
-        <!-- Gallery Item 3 -->
-        <div class="gallery-item">
-            <a href="https://quranteach.net/" target="_blank">
-                <img src="madarsa.png" alt="QuranTeach">
-                <div class="overlay">
-                    <p class="text-center">View the QuranTeach Project</p>
-                </div>
-            </a>
-        </div>
-
-        <!-- Gallery Item 4 -->
-        <div class="gallery-item">
-            <a href="https://quranteach.net/api/dashbord.php" target="_blank">
-                <img src="filer.jpg" alt="File Manager">
-                <div class="overlay">
-                    <p class="text-center">View the File Manager</p>
-                </div>
-            </a>
-        </div>
-
-        <!-- Gallery Item 5 -->
-        <div class="gallery-item">
-            <a href="" target="_blank">
-                <img src="quiz.png" alt="Quiz Web App">
-                <div class="overlay">
-                    <p class="text-center">View the Quiz Web App</p>
-                </div>
-            </a>
-        </div>
-
-        <!-- Gallery Item 6 -->
-        <div class="gallery-item">
-            <a href="https://aqib.quranteach.net/admin/admin_login.php" target="_blank">
-                <img src="dashbord.png" alt="PHP Dashboard">
-                <div class="overlay">
-                    <p class="text-center">View the PHP Dashboard</p>
-                </div>
-            </a>
-        </div>
-
-        <!-- Gallery Item 7 -->
-        <div class="gallery-item">
-            <a href="" target="_blank">
-                <img src="fg.png" alt="Social Media Login">
-                <div class="overlay">
-                    <p class="text-center">Login with Google & Facebook</p>
-                </div>
-            </a>
-        </div>
-
-        <!-- Gallery Item 8 -->
-        <div class="gallery-item">
-            <a href="https://aqib.quranteach.net/resetpwd.php" target="_blank">
-                <img src="forget.png" alt="Password Recovery">
-                <div class="overlay">
-                    <p class="text-center">View the Forget Password Feature</p>
-                </div>
-            </a>
-        </div>
-
-        <!-- Gallery Item 9 -->
-        <div class="gallery-item">
-            <a href="" target="_blank">
-                <img src="mailorder.png" alt="Order Confirmation Email">
-                <div class="overlay">
-                    <p class="text-center">View the Order Confirmation Email</p>
-                </div>
-            </a>
-        </div>
-
-        <!-- Gallery Item 10 -->
-        <div class="gallery-item">
-            <a href="" target="_blank">
-                <img src="dashbordtecher.png" alt="Teacher Dashboard">
-                <div class="overlay">
-                    <p class="text-center">View the Teacher Dashboard</p>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>
-
-
-<!-- Add Font Awesome CDN for icons -->
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<!-- Footer Section -->
-<footer class="bg-gray-800 text-white py-6">
-    <section class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center" id="footer">
-        <!-- Column 1: Personal Info -->
-        <div>
-            <p class="text-lg font-semibold mb-2">Aqib Khan</p>
-            <p class="text-md mb-2">Information Technology Enthusiast | PHP Developer</p>
-            <p class="mb-4">Striving to evolve into a highly skilled PHP programmer, committed to delivering flawless solutions to diverse challenges.</p>
-        </div>
-
-        <!-- Column 2: Skills & Languages -->
-        <div>
-            <h3 class="text-xl font-semibold mb-2">Skills</h3>
-            <p class="text-sm mb-2">HTML, CSS, PHP, MySQL, JavaScript, JQuery, WordPress, Bootstrap</p>
-            <h3 class="text-xl font-semibold mb-2">Languages</h3>
-            <p class="text-sm">English (Limited Working Proficiency), Urdu (Full Professional Proficiency)</p>
-        </div>
-
-        <!-- Column 3: Social Media Links -->
-        <div>
-            <h3 class="text-xl font-semibold mb-2">Follow Me</h3>
-            <div class="flex justify-center space-x-6">
-                <a href="https://www.linkedin.com/in/aqib-khan-a54159282" target="_blank" class="text-white hover:text-red-500">
-                    LinkedIn
-                </a>
-                <a href="https://github.com/Aqibrk" target="_blank" class="text-white hover:text-red-500">
-                    GitHub
-                </a>
-                <a href="mailto:aqibkhanrk676@gmail.com" class="text-white hover:text-red-500">
-                    Email
-                </a>
-            </div>
-        </div>
-
-        <!-- Column 4: Contact Information -->
-        <div>
-            <h3 class="text-xl font-semibold mb-2">Contact</h3>
-            <p class="text-sm mb-2">Email: <a href="mailto:aqibkhanrk676@gmail.com" class="text-pink-500">aqibkhanrk676@gmail.com</a></p>
-            <p class="text-sm mb-2">Phone: <a href="tel:+923161307589" class="text-pink-500">03161307589</a></p>
-            <p class="text-sm">Location: Hyderabad, Pakistan</p>
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-r from-slate-900 to-slate-800 pt-32 pb-20 flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        
+        <div class="container mx-auto px-6 z-10 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">My Projects</h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                Explore my portfolio of web development projects showcasing my skills in PHP, JavaScript, and database solutions.
+            </p>
         </div>
     </section>
 
-    <!-- Copyright Section -->
-    <div class="text-center mt-6">
-        <p class="text-sm">© 2024 Aqib Khan. All Rights Reserved.</p>
-    </div>
-</footer>
-
-
-
-
-
-
-    <!-- Full-Screen Dropdown (Mobile) -->
-    <div class="navbar-links-mobile" id="navbar-links-mobile">
-        <div class="absolute top-5 right-5 text-white text-3xl cursor-pointer" id="close-btn">
-            &times;
+    <!-- Projects Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 section-title">Featured Projects</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-6">
+                    Here are some of my most recent and notable projects that demonstrate my technical expertise.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1: E-Store -->
+                <div class="project-card bg-white p-8 rounded-lg shadow-md">
+                    <div class="mb-6 h-48 overflow-hidden rounded-lg">
+                        <img src="estore.png" alt="E-Store Project" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">E-Store</h3>
+                    <p class="text-gray-600 mb-4">
+                        A fully functional e-commerce platform with product management, shopping cart, and secure checkout.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">PHP</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">MySQL</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">JavaScript</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">Bootstrap</span>
+                    </div>
+                    <a href="https://aqib.quranteach.net/" target="_blank" class="btn-primary text-white font-medium py-3 px-6 rounded-lg inline-block w-full text-center">
+                        View Project
+                    </a>
+                </div>
+                
+                <!-- Project 2: School Management System -->
+                <div class="project-card bg-white p-8 rounded-lg shadow-md">
+                    <div class="mb-6 h-48 overflow-hidden rounded-lg">
+                        <img src="lms.png" alt="School Management System" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">School Management System</h3>
+                    <p class="text-gray-600 mb-4">
+                        Comprehensive system for managing student records, teacher profiles, exams, and library resources.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">PHP</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">MySQL</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">jQuery</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">AJAX</span>
+                    </div>
+                    <a href="https://learnquraninhome.freewebhostmost.com/" target="_blank" class="btn-primary text-white font-medium py-3 px-6 rounded-lg inline-block w-full text-center">
+                        View Project
+                    </a>
+                </div>
+                
+                <!-- Project 3: QuranTeach -->
+                <div class="project-card bg-white p-8 rounded-lg shadow-md">
+                    <div class="mb-6 h-48 overflow-hidden rounded-lg">
+                        <img src="madarsa.png" alt="QuranTeach Project" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">QuranTeach</h3>
+                    <p class="text-gray-600 mb-4">
+                        Online platform for Quran education with lesson plans, progress tracking, and interactive features.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">PHP</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">MySQL</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">JavaScript</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">CSS3</span>
+                    </div>
+                    <a href="http://quranteach.net" target="_blank" class="btn-primary text-white font-medium py-3 px-6 rounded-lg inline-block w-full text-center">
+                        View Project
+                    </a>
+                </div>
+                
+                <!-- Project 4: File Manager -->
+                <div class="project-card bg-white p-8 rounded-lg shadow-md">
+                    <div class="mb-6 h-48 overflow-hidden rounded-lg">
+                        <img src="filer.jpg" alt="File Manager" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">File Manager</h3>
+                    <p class="text-gray-600 mb-4">
+                        Web-based file management system for uploading, organizing, and downloading various file types.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">PHP</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">JavaScript</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">File Handling</span>
+                    </div>
+                    <a href="https://quranteach.net/api/dashbord.php" target="_blank" class="btn-primary text-white font-medium py-3 px-6 rounded-lg inline-block w-full text-center">
+                        View Project
+                    </a>
+                </div>
+                
+                <!-- Project 5: Quiz Web App -->
+                <div class="project-card bg-white p-8 rounded-lg shadow-md">
+                    <div class="mb-6 h-48 overflow-hidden rounded-lg">
+                        <img src="quiz.png" alt="Quiz Web App" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Quiz Web App</h3>
+                    <p class="text-gray-600 mb-4">
+                        Interactive quiz platform with timed tests, progress tracking, and result analysis.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">JavaScript</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">PHP</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">MySQL</span>
+                    </div>
+                    <a href="#" class="btn-primary text-white font-medium py-3 px-6 rounded-lg inline-block w-full text-center opacity-75 cursor-not-allowed">
+                        Coming Soon
+                    </a>
+                </div>
+                
+                <!-- Project 6: PHP Dashboard -->
+                <div class="project-card bg-white p-8 rounded-lg shadow-md">
+                    <div class="mb-6 h-48 overflow-hidden rounded-lg">
+                        <img src="dashbord.png" alt="PHP Dashboard" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">PHP Dashboard</h3>
+                    <p class="text-gray-600 mb-4">
+                        Administrative dashboard for content management, statistics viewing, and system configuration.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">PHP</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">MySQL</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">Chart.js</span>
+                    </div>
+                    <a href="https://aqib.quranteach.net/admin/admin_login.php" target="_blank" class="btn-primary text-white font-medium py-3 px-6 rounded-lg inline-block w-full text-center">
+                        View Project
+                    </a>
+                </div>
+            </div>
         </div>
-        <ul class="space-y-8">
-            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/" class="underline-effect"><span>Home</span></a></li>
-            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/index.html#about" class="underline-effect"><span>About</span></a></li>
-            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/project1.html" class="underline-effect"><span>Projects</span></a></li>
-            <li><a href="https://aqibrk.github.io/AqibKhan-Portfolio/index.html#services" class="underline-effect">Services</a></li>
-              <li><a href="#footer" class="underline-effect"><span>Contact</span></a></li>
-        </ul>
-    </div>
+    </section>
+
+    <!-- Project Gallery Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 section-title">Project Screenshots</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-6">
+                    Browse through screenshots of my projects to get a better feel for the user interfaces I've created.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item relative rounded-lg overflow-hidden shadow-md">
+                    <img src="estore.png" alt="E-Store Screenshot" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                        <a href="https://aqib.quranteach.net/" target="_blank" class="text-white text-lg font-semibold bg-red-600 px-6 py-2 rounded-lg hover:bg-red-700 transition">
+                            View E-Store
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item relative rounded-lg overflow-hidden shadow-md">
+                    <img src="lms.png" alt="School Management System" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                        <a href="https://learnquraninhome.freewebhostmost.com/" target="_blank" class="text-white text-lg font-semibold bg-red-600 px-6 py-2 rounded-lg hover:bg-red-700 transition">
+                            View LMS
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item relative rounded-lg overflow-hidden shadow-md">
+                    <img src="madarsa.png" alt="QuranTeach Screenshot" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                        <a href="https://quranteach.net/" target="_blank" class="text-white text-lg font-semibold bg-red-600 px-6 py-2 rounded-lg hover:bg-red-700 transition">
+                            View QuranTeach
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item relative rounded-lg overflow-hidden shadow-md">
+                    <img src="filer.jpg" alt="File Manager" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                        <a href="https://quranteach.net/api/dashbord.php" target="_blank" class="text-white text-lg font-semibold bg-red-600 px-6 py-2 rounded-lg hover:bg-red-700 transition">
+                            View File Manager
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item relative rounded-lg overflow-hidden shadow-md">
+                    <img src="quiz.png" alt="Quiz Web App" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                        <a href="#" class="text-white text-lg font-semibold bg-red-600 px-6 py-2 rounded-lg hover:bg-red-700 transition opacity-75 cursor-not-allowed">
+                            Coming Soon
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item relative rounded-lg overflow-hidden shadow-md">
+                    <img src="dashbord.png" alt="PHP Dashboard" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                        <a href="https://aqib.quranteach.net/admin/admin_login.php" target="_blank" class="text-white text-lg font-semibold bg-red-600 px-6 py-2 rounded-lg hover:bg-red-700 transition">
+                            View Dashboard
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 7 -->
+                <div class="gallery-item relative rounded-lg overflow-hidden shadow-md">
+                    <img src="fg.png" alt="Social Login" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                        <a href="#" class="text-white text-lg font-semibold bg-red-600 px-6 py-2 rounded-lg hover:bg-red-700 transition opacity-75 cursor-not-allowed">
+                            Coming Soon
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 8 -->
+                <div class="gallery-item relative rounded-lg overflow-hidden shadow-md">
+                    <img src="forget.png" alt="Password Recovery" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                        <a href="https://aqib.quranteach.net/resetpwd.php" target="_blank" class="text-white text-lg font-semibold bg-red-600 px-6 py-2 rounded-lg hover:bg-red-700 transition">
+                            View Feature
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 9 -->
+                <div class="gallery-item relative rounded-lg overflow-hidden shadow-md">
+                    <img src="mailorder.png" alt="Order Confirmation" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                        <a href="#" class="text-white text-lg font-semibold bg-red-600 px-6 py-2 rounded-lg hover:bg-red-700 transition opacity-75 cursor-not-allowed">
+                            Coming Soon
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-slate-900 to-slate-800 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Project?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                Let's discuss how I can help bring your ideas to life with custom web solutions.
+            </p>
+            <a href="contact.html" class="btn-primary text-white font-medium py-3 px-8 rounded-lg inline-block">
+                Get In Touch
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Aqib Khan</h3>
+                    <p class="text-gray-400">
+                        Professional PHP Developer creating robust web solutions for businesses worldwide.
+                    </p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="https://www.linkedin.com/in/aqib-khan-a54159282" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="https://github.com/Aqibrk" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="index.html#about" class="text-gray-400 hover:text-white transition">About</a></li>
+                        <li><a href="project1.html" class="text-gray-400 hover:text-white transition">Projects</a></li>
+                        <li><a href="index.html#services" class="text-gray-400 hover:text-white transition">Services</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">PHP Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Web Applications</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">E-commerce Solutions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Database Design</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Maintenance & Support</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                            <span>Hyderabad, Pakistan</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3"></i>
+                            <a href="mailto:aqibkhanrk676@gmail.com" class="hover:text-white transition">aqibkhanrk676@gmail.com</a>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-3"></i>
+                            <a href="tel:+923161307589" class="hover:text-white transition">+92 316 1307589</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Aqib Khan. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-      // Select the mobile menu toggle and links
-// Select the mobile menu toggle and links
-const toggleButton = document.getElementById('navbar-toggle');
-const mobileMenu = document.querySelector('.navbar-links-mobile');
-const mobileLinks = document.querySelectorAll('.navbar-links-mobile li a');
-const closeButton = document.getElementById('close-btn'); // Select the close button
+        // Loader
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 1000);
+        });
 
-// Open/Close menu on toggle button click
-toggleButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('show');
-});
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+        
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
 
-// Close menu when a link is clicked
-mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenu.classList.remove('show');
-    });
-});
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
 
-// Close menu when close button is clicked
-closeButton.addEventListener('click', () => {
-    mobileMenu.classList.remove('show');
-});
-
-// Hide the loader after the page loads
-window.onload = () => {
-    const loader = document.getElementById('loader');
-    loader.classList.add('hidden');
-};
-
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
     </script>
 </body>
 </html>

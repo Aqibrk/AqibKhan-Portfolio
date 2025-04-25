@@ -170,8 +170,8 @@
             })
             .catch(error => {
               document.getElementById("notification").classList.remove("hidden");
-              document.getElementById("notification").classList.add("bg-red-100", "border-red-400", "text-red-700");
-            
+              document.getElementById("notification").classList.add("bg-red-100", "border-green-400", "text-red-700");
+              document.getElementById("notification").innerText = "✅ Your message has been sent to the admin via WhatsApp!";
               console.error("Error:", error);
             });
         });

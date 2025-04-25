@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Aqib Khan - PHP Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="g1.png">
+    <style>
+        :root {
+            --primary-color: rgb(220, 20, 60);
+            --secondary-color: rgb(30, 41, 59);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .contact-input {
+            transition: all 0.3s ease;
+        }
+        
+        .contact-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.2);
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(220, 20, 60, 0.3);
+        }
+        
+        .map-container {
+            height: 100%;
+            min-height: 300px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 left-0 w-full py-4 px-6 md:px-12 flex justify-between items-center z-40 bg-slate-900">
+        <div class="flex items-center">
+            <a href="index.html" class="text-2xl font-bold text-white">
+                <span class="text-white">Aqib</span>
+                <span class="text-red-600">Khan</span>
+            </a>
+        </div>
+        
+        <div class="hidden md:flex space-x-8">
+            <a href="index.html" class="text-white hover:text-red-400 transition">Home</a>
+            <a href="index.html#about" class="text-white hover:text-red-400 transition">About</a>
+            <a href="index.html#services" class="text-white hover:text-red-400 transition">Services</a>
+            <a href="index.html#portfolio" class="text-white hover:text-red-400 transition">Portfolio</a>
+            <a href="index.html#testimonials" class="text-white hover:text-red-400 transition">Testimonials</a>
+            <a href="contact.html" class="text-white hover:text-red-400 transition">Contact</a>
+        </div>
+        
+        <div class="md:hidden">
+            <button id="mobile-menu-button" class="text-white focus:outline-none">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-gray-900 bg-opacity-90 z-50 hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <button id="close-mobile-menu" class="absolute top-6 right-6 text-white text-2xl">
+                &times;
+            </button>
+            <a href="index.html" class="text-white text-2xl hover:text-red-400 transition">Home</a>
+            <a href="index.html#about" class="text-white text-2xl hover:text-red-400 transition">About</a>
+            <a href="index.html#services" class="text-white text-2xl hover:text-red-400 transition">Services</a>
+            <a href="index.html#portfolio" class="text-white text-2xl hover:text-red-400 transition">Portfolio</a>
+            <a href="index.html#testimonials" class="text-white text-2xl hover:text-red-400 transition">Testimonials</a>
+            <a href="contact.html" class="text-white text-2xl hover:text-red-400 transition">Contact</a>
+        </div>
+    </div>
+
+    <!-- Contact Hero Section -->
+    <section class="pt-32 pb-20 bg-gradient-to-r from-slate-900 to-slate-800 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Get In Touch</h1>
+            <p class="text-xl max-w-2xl mx-auto">
+                Have a project in mind or want to discuss potential collaboration? I'd love to hear from you.
+            </p>
+        </div>
+    </section>
+
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Send Me a Message</h2>
+
+        <?php
+          // Admin WhatsApp number
+          $adminPhone = "+923161307589";
+          $notificationMsg = "";
+
+          if ($_SERVER["REQUEST_METHOD"] == "POST") {
+              $name = htmlspecialchars($_POST["name"]);
+              $email = htmlspecialchars($_POST["email"]);
+              $subject = htmlspecialchars($_POST["subject"]);
+              $problem = htmlspecialchars($_POST["message"]);
+
+              // WhatsApp message
+              $message = "╔════════════════════╗\n"
+                      . "      📩 *NEW MESSAGE RECEIVED* \n"
+                      . "╚════════════════════╝\n\n"
+                      . "🔹 *Name:* $name\n"
+                      . "🔹 *Email:* $email\n"
+                      . "🔹 *Subject:* $subject\n"
+                      . "🔹 *Message:* \n```$problem```\n\n"
+                      . "📅 *Date:* " . date("d M Y, h:i A") . "\n"
+                      . "━━━━━━━━━━━━━━━━━━━━\n"
+                      . "⚡ _Please respond at your earliest convenience!_";
+
+              // Send WhatsApp
+              $apiKey = "9331568"; // Replace with your actual CallMeBot API Key
+              $encodedMessage = urlencode($message);
+              $url = "https://api.callmebot.com/whatsapp.php?phone=923161307589&text=$encodedMessage&apikey=$apiKey";
+              $response = file_get_contents($url);
+
+              $notificationMsg = "✅ Your message has been sent to the admin via WhatsApp!";
+          }
+        ?>
+
+        <?php if (!empty($notificationMsg)) : ?>
+          <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
+            <?php echo $notificationMsg; ?>
+          </div>
+        <?php endif; ?>
+
+        <form method="POST" action="" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+              <input type="text" id="name" name="name" required class="contact-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+            </div>
+            <div>
+              <label for="email" class="block text-gray-700 font-medium mb-2">Your Email</label>
+              <input type="email" id="email" name="email" required class="contact-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+            </div>
+          </div>
+
+          <div>
+            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+            <input type="text" id="subject" name="subject" required class="contact-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+          </div>
+
+          <div>
+            <label for="message" class="block text-gray-700 font-medium mb-2">Your Message</label>
+            <textarea id="message" name="message" rows="6" required class="contact-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none"></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary font-medium py-3 px-8 rounded-lg">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+    <!-- Map Section -->
+    <section class="bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="rounded-xl overflow-hidden shadow-lg">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.992344143922!2d68.3604663150099!3d25.39683748388216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x394c70f6d3d8b5a5%3A0xdf5a10a5e9b0f3a4!2sHyderabad%2C%20Sindh%2C%20Pakistan!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" class="map-container"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Aqib Khan</h3>
+                    <p class="text-gray-400">
+                        Professional PHP Developer creating robust web solutions for businesses worldwide.
+                    </p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="https://www.linkedin.com/in/aqib-khan-a54159282" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="https://github.com/Aqibrk" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="index.html#about" class="text-gray-400 hover:text-white transition">About</a></li>
+                        <li><a href="index.html#services" class="text-gray-400 hover:text-white transition">Services</a></li>
+                        <li><a href="index.html#portfolio" class="text-gray-400 hover:text-white transition">Portfolio</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">PHP Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Web Applications</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">E-commerce Solutions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Database Design</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Maintenance & Support</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                            <span>Hyderabad, Pakistan</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3"></i>
+                            <a href="mailto:aqibkhanrk676@gmail.com" class="hover:text-white transition">aqibkhanrk676@gmail.com</a>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-3"></i>
+                            <a href="tel:+923161307589" class="hover:text-white transition">+92 316 1307589</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Aqib Khan. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+        
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send the form data to a server
+            // For demonstration, we'll just show an alert
+            alert(`Thank you, ${name}! Your message has been sent. I'll get back to you soon.`);
+            
+            // Reset the form
+            contactForm.reset();
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-slate-900');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.add('bg-slate-900');
+            }
+        });
+    </script>
+</body>
+</html>
